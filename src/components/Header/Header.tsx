@@ -40,7 +40,6 @@ const Header: React.FC = () => {
         {/* User Actions */}
         <div className="flex items-center space-x-4 ">
           <button className="group flex items-center">
-            <Link href="/login">
               <svg
                 width="24"
                 height="25"
@@ -85,12 +84,12 @@ const Header: React.FC = () => {
                   strokeLinejoin="round"
                 />
               </svg>
-            </Link>
             <span className="mr-2 text-gray-600 group-hover:text-green-600 transition">
               فروشنده شوید
             </span>
           </button>
           <button className="group">
+            <Link href="/login">
             <svg
               width="24"
               height="25"
@@ -114,6 +113,7 @@ const Header: React.FC = () => {
                 strokeLinejoin="round"
               />
             </svg>
+            </Link>
           </button>
           <button className="group">
             <svg
