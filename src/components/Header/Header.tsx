@@ -1,12 +1,21 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { MegaMenu, mockMenuData } from "../MegaMenu";
+import { ApiCategory, MegaMenu } from "../MegaMenu";
+import { getCategories } from "@/services/categoryService";
 
 const Header: React.FC = () => {
   const [showMegaMenu, setShowMegaMenu] = useState(false);
+  const [categories, setCategories] = useState<ApiCategory[]>([]);
 
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const categories = await getCategories();
+      setCategories(categories);
+    };
+    fetchCategories();
+  }, []);
   const handleCategoryMouseEnter = () => {
     setShowMegaMenu(true);
   };
@@ -253,10 +262,8 @@ const Header: React.FC = () => {
 
             {/* Mega Menu */}
             {showMegaMenu && (
-              <div
-                className="absolute top-full bg-white right-0 z-50 shadow-lg rounded-l-lg w-6xl"
-              >
-                <MegaMenu categories={mockMenuData} />
+              <div className="absolute top-full bg-white right-0 z-50 shadow-lg rounded-l-lg w-6xl">
+                <MegaMenu categories={categories} />
               </div>
             )}
           </div>

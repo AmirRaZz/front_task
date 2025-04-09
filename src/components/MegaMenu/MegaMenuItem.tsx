@@ -1,10 +1,10 @@
 "use client";
 
 import React from "react";
-import { SubCategory, MenuItem } from "./types";
+import { ChildrenCategory } from "./types";
 
 type MegaMenuItemProps = {
-  category: SubCategory;
+  category: ChildrenCategory;
 };
 
 export const MegaMenuItem: React.FC<MegaMenuItemProps> = ({ category }) => {
@@ -12,18 +12,18 @@ export const MegaMenuItem: React.FC<MegaMenuItemProps> = ({ category }) => {
     <div className="flex flex-col pb-2">
       {/* Category title */}
       <div className="mb-3 text-gray-700 text-right">
-        <h3 className="font-medium">{category.title}</h3>
+        <h3 className="font-medium">{category.name}</h3>
       </div>
 
       {/* List of links */}
       <div className="flex flex-col space-y-3 mb-2">
-        {category.items.map((item: MenuItem, index: number) => (
+        {category.children.map((item: ChildrenCategory, index: number) => (
           <a
             key={`${item.id}-${index}`}
-            href={item.url || "#"}
+            href={item.link || "#"}
             className="text-gray-500 hover:text-[#8cc63f] transition-colors pl-2"
           >
-            {item.title}
+            {item.name}
           </a>
         ))}
       </div>
