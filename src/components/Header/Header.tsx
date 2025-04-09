@@ -1,8 +1,20 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { MegaMenu, mockMenuData } from "../MegaMenu";
 
 const Header: React.FC = () => {
+  const [showMegaMenu, setShowMegaMenu] = useState(false);
+
+  const handleCategoryMouseEnter = () => {
+    setShowMegaMenu(true);
+  };
+
+  const handleCategoryMouseLeave = () => {
+    setShowMegaMenu(false);
+  };
+
   return (
     <header className="container xl:max-w-screen-xl mx-auto">
       {/* Top section */}
@@ -40,56 +52,6 @@ const Header: React.FC = () => {
         {/* User Actions */}
         <div className="flex items-center space-x-4 ">
           <button className="group flex items-center">
-              <svg
-                width="24"
-                height="25"
-                viewBox="0 0 24 25"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="text-gray-600 group-hover:text-green-600 transition"
-              >
-                <path
-                  d="M3.01038 16.21C3.01038 20.7 4.81038 22.5 9.30038 22.5H14.6904C19.1804 22.5 20.9804 20.7 20.9804 16.21V11.72"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M12.0004 12.5C13.8304 12.5 15.1804 11.01 15.0004 9.18L14.3404 2.5H9.67037L9.00037 9.18C8.82037 11.01 10.1704 12.5 12.0004 12.5Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M18.3104 12.5C20.3304 12.5 21.8104 10.86 21.6104 8.85L21.3304 6.1C20.9704 3.5 19.9704 2.5 17.3504 2.5H14.3004L15.0004 9.51C15.1704 11.16 16.6604 12.5 18.3104 12.5Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M5.64037 12.5C7.29037 12.5 8.78037 11.16 8.94037 9.51L9.16037 7.3L9.64037 2.5H6.59037C3.97037 2.5 2.97037 3.5 2.61037 6.1L2.34037 8.85C2.14037 10.86 3.62037 12.5 5.64037 12.5Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-                <path
-                  d="M12.0004 17.5C10.3304 17.5 9.50037 18.33 9.50037 20V22.5H14.5004V20C14.5004 18.33 13.6704 17.5 12.0004 17.5Z"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            <span className="mr-2 text-gray-600 group-hover:text-green-600 transition">
-              فروشنده شوید
-            </span>
-          </button>
-          <button className="group">
-            <Link href="/login">
             <svg
               width="24"
               height="25"
@@ -99,20 +61,70 @@ const Header: React.FC = () => {
               className="text-gray-600 group-hover:text-green-600 transition"
             >
               <path
-                d="M15.68 4.46C16.16 5.17 16.44 6.02 16.44 6.94C16.43 9.34 14.54 11.29 12.16 11.37C12.06 11.36 11.94 11.36 11.83 11.37C9.62 11.3 7.83 9.61 7.59 7.45C7.3 4.88 9.41 2.5 11.99 2.5"
+                d="M3.01038 16.21C3.01038 20.7 4.81038 22.5 9.30038 22.5H14.6904C19.1804 22.5 20.9804 20.7 20.9804 16.21V11.72"
                 stroke="currentColor"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
               <path
-                d="M6.99 15.06C4.57 16.68 4.57 19.32 6.99 20.93C9.74 22.77 14.25 22.77 17 20.93C19.42 19.31 19.42 16.67 17 15.06C14.27 13.23 9.76 13.23 6.99 15.06Z"
+                d="M12.0004 12.5C13.8304 12.5 15.1804 11.01 15.0004 9.18L14.3404 2.5H9.67037L9.00037 9.18C8.82037 11.01 10.1704 12.5 12.0004 12.5Z"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M18.3104 12.5C20.3304 12.5 21.8104 10.86 21.6104 8.85L21.3304 6.1C20.9704 3.5 19.9704 2.5 17.3504 2.5H14.3004L15.0004 9.51C15.1704 11.16 16.6604 12.5 18.3104 12.5Z"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M5.64037 12.5C7.29037 12.5 8.78037 11.16 8.94037 9.51L9.16037 7.3L9.64037 2.5H6.59037C3.97037 2.5 2.97037 3.5 2.61037 6.1L2.34037 8.85C2.14037 10.86 3.62037 12.5 5.64037 12.5Z"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <path
+                d="M12.0004 17.5C10.3304 17.5 9.50037 18.33 9.50037 20V22.5H14.5004V20C14.5004 18.33 13.6704 17.5 12.0004 17.5Z"
                 stroke="currentColor"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </svg>
+            <span className="mr-2 text-gray-600 group-hover:text-green-600 transition">
+              فروشنده شوید
+            </span>
+          </button>
+          <button className="group">
+            <Link href="/login">
+              <svg
+                width="24"
+                height="25"
+                viewBox="0 0 24 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-gray-600 group-hover:text-green-600 transition"
+              >
+                <path
+                  d="M15.68 4.46C16.16 5.17 16.44 6.02 16.44 6.94C16.43 9.34 14.54 11.29 12.16 11.37C12.06 11.36 11.94 11.36 11.83 11.37C9.62 11.3 7.83 9.61 7.59 7.45C7.3 4.88 9.41 2.5 11.99 2.5"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M6.99 15.06C4.57 16.68 4.57 19.32 6.99 20.93C9.74 22.77 14.25 22.77 17 20.93C19.42 19.31 19.42 16.67 17 15.06C14.27 13.23 9.76 13.23 6.99 15.06Z"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </Link>
           </button>
           <button className="group">
@@ -191,48 +203,63 @@ const Header: React.FC = () => {
       <div className=" flex justify-between items-center">
         <div className="py-2 flex items-center gap-x-8">
           {/* Categories Button */}
-          <button className="flex items-center space-x-2 group">
-            <svg
-              width="25"
-              height="24"
-              viewBox="0 0 25 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              className="text-gray-600 group-hover:text-green-600 transition"
-            >
-              <path
-                d="M3.82007 19.5H21.3201"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M18.8201 12.5H21.3201"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M3.82007 12.5H14.3201"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M3.82007 5.5H21.3201"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-            <span className="text-gray-600 group-hover:text-green-600 transition">
-              دسته بندی ها
-            </span>
-          </button>
+          <div
+            className="relative"
+            onMouseEnter={handleCategoryMouseEnter}
+            onMouseLeave={handleCategoryMouseLeave}
+          >
+            <button className="flex items-center space-x-2 group">
+              <svg
+                width="25"
+                height="24"
+                viewBox="0 0 25 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="text-gray-600 group-hover:text-green-600 transition"
+              >
+                <path
+                  d="M3.82007 19.5H21.3201"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M18.8201 12.5H21.3201"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M3.82007 12.5H14.3201"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M3.82007 5.5H21.3201"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              <span className="text-gray-600 group-hover:text-green-600 transition">
+                دسته بندی ها
+              </span>
+            </button>
+
+            {/* Mega Menu */}
+            {showMegaMenu && (
+              <div
+                className="absolute top-full bg-white right-0 z-50 shadow-lg rounded-l-lg w-6xl"
+              >
+                <MegaMenu categories={mockMenuData} />
+              </div>
+            )}
+          </div>
           <div className="border-r border-gray-400 h-7 mx-2"></div>
           {/* Green Life Button */}
           <button className="hidden md:flex items-center space-x-2 group">
